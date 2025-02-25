@@ -1,10 +1,23 @@
 package com.example.EmployeePayrollApp.model;
 
-public class EmployeePayrollData {
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "EMPLOYEE")
+public class EmployeePayrollData {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name="ID")
         private int id;
+
+        @Column(name="NAME")
         private String name;
+
+        @Column(name="SALARY")
         private double salary;
+
+        public EmployeePayrollData() {
+        }
 
         public EmployeePayrollData(int id, String name, double salary) {
             this.id = id;
