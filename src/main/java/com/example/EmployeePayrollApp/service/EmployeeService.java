@@ -1,42 +1,45 @@
 package com.example.EmployeePayrollApp.service;
-import com.example.EmployeePayrollApp.model.EmployeePayrollData;
-import com.example.EmployeePayrollApp.repository.EmployeeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.EmployeePayrollApp.dto.EmployeeDTO;
 import org.springframework.stereotype.Service;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeService {
-    @Autowired
-    private EmployeeRepository employeeRepository;
-    //service methods here
-    public List<EmployeePayrollData> getAllEmployees() {
-        return employeeRepository.findAll();
+
+    private final List<EmployeeDTO> employeeList = new ArrayList<>();
+    private int employeeIdCounter = 1;
+
+    public List<EmployeeDTO> getAllEmployees() {
+        return employeeList;
     }
 
-    public EmployeePayrollData getEmployeeById(int id) {
-        return employeeRepository.findById(id).orElse(null);
+    public EmployeeDTO getEmployeeById(int id) {
+        return employeeList.stream()
+                .filter(emp -> emp.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
-    public EmployeePayrollData addEmployee(EmployeePayrollData employee) {
-        return employeeRepository.save(employee);
+    public EmployeeDTO addEmployee(EmployeeDTO employeeDTO) {
+        employeeDTO.setId(employeeIdCounter++);
+        employeeList.add(employeeDTO);
+        return employeeDTO;
     }
 
-    public EmployeePayrollData updateEmployee(int id, EmployeePayrollData updatedEmployee) {
-        EmployeePayrollData employee = employeeRepository.findById(id).orElse(null);
-        if (employee != null) {
-            employee.setName(updatedEmployee.getName());
-            employee.setSalary(updatedEmployee.getSalary());
-            return employeeRepository.save(employee);
+    public EmployeeDTO updateEmployee(int id, EmployeeDTO updatedEmployee) {
+        for (EmployeeDTO emp : employeeList) {
+            if (emp.getId() == id) {
+                emp.setName(updatedEmployee.getName());
+                emp.setSalary(updatedEmployee.getSalary());
+                return emp;
+            }
         }
         return null;
     }
 
     public boolean deleteEmployee(int id) {
-        if (employeeRepository.existsById(id)) {
-            employeeRepository.deleteById(id);
-            return true;
-        }
-        return false;
+        return employeeList.removeIf(emp -> emp.getId() == id);
     }
 }
