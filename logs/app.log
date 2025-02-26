@@ -1,0 +1,36 @@
+2025-02-26T17:46:33.422+05:30  INFO 24860 --- [EmployeePayrollApp] [main] c.e.E.EmployeePayrollApplication         : Starting EmployeePayrollApplication using Java 21.0.2 with PID 24860 (C:\Users\asus\OneDrive\Desktop\EmployeePayrollApp\target\classes started by asus in C:\Users\asus\OneDrive\Desktop\EmployeePayrollApp)
+2025-02-26T17:46:33.425+05:30  INFO 24860 --- [EmployeePayrollApp] [main] c.e.E.EmployeePayrollApplication         : The following 1 profile is active: "default"
+2025-02-26T17:46:34.451+05:30  INFO 24860 --- [EmployeePayrollApp] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-26T17:46:34.546+05:30  INFO 24860 --- [EmployeePayrollApp] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 80 ms. Found 1 JPA repository interface.
+2025-02-26T17:46:35.366+05:30  INFO 24860 --- [EmployeePayrollApp] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-26T17:46:35.391+05:30  INFO 24860 --- [EmployeePayrollApp] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26T17:46:35.392+05:30  INFO 24860 --- [EmployeePayrollApp] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-02-26T17:46:35.466+05:30  INFO 24860 --- [EmployeePayrollApp] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26T17:46:35.467+05:30  INFO 24860 --- [EmployeePayrollApp] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1971 ms
+2025-02-26T17:46:35.751+05:30  INFO 24860 --- [EmployeePayrollApp] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-26T17:46:35.873+05:30  INFO 24860 --- [EmployeePayrollApp] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-02-26T17:46:35.941+05:30  INFO 24860 --- [EmployeePayrollApp] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-26T17:46:36.462+05:30  INFO 24860 --- [EmployeePayrollApp] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-26T17:46:36.530+05:30  INFO 24860 --- [EmployeePayrollApp] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-26T17:46:37.063+05:30  INFO 24860 --- [EmployeePayrollApp] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@121ddca4
+2025-02-26T17:46:37.066+05:30  INFO 24860 --- [EmployeePayrollApp] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-26T17:46:37.142+05:30  WARN 24860 --- [EmployeePayrollApp] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-26T17:46:37.144+05:30  WARN 24860 --- [EmployeePayrollApp] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-02-26T17:46:37.181+05:30  INFO 24860 --- [EmployeePayrollApp] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-26T17:46:38.398+05:30  INFO 24860 --- [EmployeePayrollApp] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-26T17:46:38.469+05:30  INFO 24860 --- [EmployeePayrollApp] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-26T17:46:38.581+05:30  WARN 24860 --- [EmployeePayrollApp] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-26T17:46:39.473+05:30  INFO 24860 --- [EmployeePayrollApp] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-26T17:46:39.483+05:30  INFO 24860 --- [EmployeePayrollApp] [main] c.e.E.EmployeePayrollApplication         : Started EmployeePayrollApplication in 6.844 seconds (process running for 7.433)
+2025-02-26T17:47:32.345+05:30  INFO 24860 --- [EmployeePayrollApp] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26T17:47:32.346+05:30  INFO 24860 --- [EmployeePayrollApp] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26T17:47:32.348+05:30  INFO 24860 --- [EmployeePayrollApp] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-02-26T18:44:59.624+05:30  WARN 24860 --- [EmployeePayrollApp] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=55m52s383ms774µs900ns).
+2025-02-26T18:50:56.730+05:30  WARN 24860 --- [EmployeePayrollApp] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m57s127ms423µs800ns).
