@@ -3,8 +3,10 @@ import com.example.EmployeePayrollApp.dto.EmployeeDTO;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import lombok.extern.slf4j.Slf4j;
 
+
+@Slf4j
 @Service
 public class EmployeeService {
 
