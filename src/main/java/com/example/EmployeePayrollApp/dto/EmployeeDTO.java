@@ -1,40 +1,19 @@
 package com.example.EmployeePayrollApp.dto;
 
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class EmployeeDTO {
     private int id;
     private String name;
     private double salary;
 
-    public EmployeeDTO() {
-    }
 
-    public EmployeeDTO(int id, String name, double salary) {
-        this.id = id;
-        this.name = name;
-        this.salary = salary;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
 }
