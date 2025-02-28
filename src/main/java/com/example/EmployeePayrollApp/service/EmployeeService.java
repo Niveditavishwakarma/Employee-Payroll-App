@@ -1,5 +1,5 @@
 package com.example.EmployeePayrollApp.service;
-
+import org.modelmapper.ModelMapper;
 import com.example.EmployeePayrollApp.dto.EmployeeDTO;
 import com.example.EmployeePayrollApp.exception.EmployeeNotFoundException;
 import com.example.EmployeePayrollApp.model.EmployeePayrollData;
@@ -17,6 +17,9 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     public List<EmployeePayrollData> getAllEmployees() {
         return employeeRepository.findAll();
     }
@@ -27,9 +30,7 @@ public class EmployeeService {
     }
 
     public EmployeePayrollData addEmployee(EmployeeDTO employeeDTO) {
-        EmployeePayrollData employee = new EmployeePayrollData();
-        employee.setName(employeeDTO.getName());
-        employee.setSalary(employeeDTO.getSalary());
+        EmployeePayrollData employee = modelMapper.map(employeeDTO, EmployeePayrollData.class);
         return employeeRepository.save(employee);
     }
 
@@ -37,9 +38,7 @@ public class EmployeeService {
         EmployeePayrollData employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException("Employee with ID " + id + " not found"));
 
-        employee.setName(updatedEmployee.getName());
-        employee.setSalary(updatedEmployee.getSalary());
-
+        modelMapper.map(updatedEmployee, employee);
         return employeeRepository.save(employee);
     }
 

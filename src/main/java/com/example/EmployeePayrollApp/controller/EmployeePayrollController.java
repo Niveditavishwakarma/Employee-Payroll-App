@@ -19,14 +19,13 @@ public class EmployeePayrollController {
 
     @GetMapping("/all")
     public ResponseEntity<List<EmployeePayrollData>> getAllEmployees() {
-        return new ResponseEntity<>(employeeService.getAllEmployees(), HttpStatus.OK);
+        return ResponseEntity.ok(employeeService.getAllEmployees());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<EmployeePayrollData> getEmployeeById(@PathVariable int id) {
         EmployeePayrollData employee = employeeService.getEmployeeById(id);
-        return employee != null ? new ResponseEntity<>(employee, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return ResponseEntity.ok(employee);
     }
 
     @PostMapping("/add")
@@ -37,15 +36,13 @@ public class EmployeePayrollController {
     @PutMapping("/update/{id}")
     public ResponseEntity<EmployeePayrollData> updateEmployee(@PathVariable int id, @Valid @RequestBody EmployeeDTO updatedEmployee) {
         EmployeePayrollData employee = employeeService.updateEmployee(id, updatedEmployee);
-        return employee != null ? new ResponseEntity<>(employee, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return ResponseEntity.ok(employee);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteEmployee(@PathVariable int id) {
-        return employeeService.deleteEmployee(id)
-                ? new ResponseEntity<>("Employee Deleted Successfully", HttpStatus.OK)
-                : new ResponseEntity<>("Employee Not Found", HttpStatus.NOT_FOUND);
+        employeeService.deleteEmployee(id);
+        return ResponseEntity.ok("Employee Deleted Successfully");
     }
 }
 
