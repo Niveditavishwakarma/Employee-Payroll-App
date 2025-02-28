@@ -1,6 +1,7 @@
 package com.example.EmployeePayrollApp.service;
 
 import com.example.EmployeePayrollApp.dto.EmployeeDTO;
+import com.example.EmployeePayrollApp.exception.EmployeeNotFoundException;
 import com.example.EmployeePayrollApp.model.EmployeePayrollData;
 import com.example.EmployeePayrollApp.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,8 @@ public class EmployeeService {
     }
 
     public EmployeePayrollData getEmployeeById(int id) {
-        return employeeRepository.findById(id).orElse(null);
+        return employeeRepository.findById(id)
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee with ID " + id + " not found"));
     }
 
     public EmployeePayrollData addEmployee(EmployeeDTO employeeDTO) {
@@ -32,21 +34,21 @@ public class EmployeeService {
     }
 
     public EmployeePayrollData updateEmployee(int id, EmployeeDTO updatedEmployee) {
-        EmployeePayrollData employee = employeeRepository.findById(id).orElse(null);
-        if (employee != null) {
-            employee.setName(updatedEmployee.getName());
-            employee.setSalary(updatedEmployee.getSalary());
-            return employeeRepository.save(employee);
-        }
-        return null;
+        EmployeePayrollData employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee with ID " + id + " not found"));
+
+        employee.setName(updatedEmployee.getName());
+        employee.setSalary(updatedEmployee.getSalary());
+
+        return employeeRepository.save(employee);
     }
 
     public boolean deleteEmployee(int id) {
-        if (employeeRepository.existsById(id)) {
-            employeeRepository.deleteById(id);
-            return true;
+        if (!employeeRepository.existsById(id)) {
+            throw new EmployeeNotFoundException("Employee with ID " + id + " not found");
         }
-        return false;
+        employeeRepository.deleteById(id);
+        return true;
     }
 }
 
