@@ -1,8 +1,12 @@
 package com.example.EmployeePayrollApp.model;
 
 import jakarta.persistence.*;
+import lombok.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
+@Data
 @Table(name = "EMPLOYEE")
 public class EmployeePayrollData {
         @Id
@@ -15,6 +19,11 @@ public class EmployeePayrollData {
 
         @Column(name="SALARY")
         private double salary;
+        private String gender;
+        private Date startDate;
+        private String note;
+        private String profilePic;
+        private List<String> department;
 
         public EmployeePayrollData() {
         }
@@ -25,14 +34,6 @@ public class EmployeePayrollData {
             this.salary = salary;
         }
 
-        public int getId() { return id; }
-        public void setId(int id) { this.id = id; }
-
-        public String getName() { return name; }
-        public void setName(String name) { this.name = name; }
-
-        public double getSalary() { return salary; }
-        public void setSalary(double salary) { this.salary = salary; }
     }
 
 
