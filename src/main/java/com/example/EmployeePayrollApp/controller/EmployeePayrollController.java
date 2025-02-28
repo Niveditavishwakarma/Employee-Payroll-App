@@ -1,43 +1,54 @@
 package com.example.EmployeePayrollApp.controller;
-
 import com.example.EmployeePayrollApp.dto.EmployeeDTO;
+import com.example.EmployeePayrollApp.model.EmployeePayrollData;
 import com.example.EmployeePayrollApp.service.EmployeeService;
+
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/employees")
-class EmployeeController {
-
+public class EmployeePayrollController {
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping
-    public List<EmployeeDTO> getAllEmployees() {
-        return employeeService.getAllEmployees();
+    @GetMapping("/all")
+    public ResponseEntity<List<EmployeePayrollData>> getAllEmployees() {
+        return new ResponseEntity<>(employeeService.getAllEmployees(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public EmployeeDTO getEmployeeById(@PathVariable int id) {
-        return employeeService.getEmployeeById(id);
+    public ResponseEntity<EmployeePayrollData> getEmployeeById(@PathVariable int id) {
+        EmployeePayrollData employee = employeeService.getEmployeeById(id);
+        return employee != null ? new ResponseEntity<>(employee, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping
-    public EmployeeDTO addEmployee(@Valid @RequestBody EmployeeDTO employeeDTO) {
-        return employeeService.addEmployee(employeeDTO);
+    @PostMapping("/add")
+    public ResponseEntity<EmployeePayrollData> addEmployee(@Valid @RequestBody EmployeeDTO employee) {
+        return new ResponseEntity<>(employeeService.addEmployee(employee), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
-    public EmployeeDTO updateEmployee(@PathVariable int id, @Valid @RequestBody EmployeeDTO updatedEmployee) {
-        return employeeService.updateEmployee(id, updatedEmployee);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<EmployeePayrollData> updateEmployee(@PathVariable int id, @Valid @RequestBody EmployeeDTO updatedEmployee) {
+        EmployeePayrollData employee = employeeService.updateEmployee(id, updatedEmployee);
+        return employee != null ? new ResponseEntity<>(employee, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("/{id}")
-    public String deleteEmployee(@PathVariable int id) {
-        boolean isDeleted = employeeService.deleteEmployee(id);
-        return isDeleted ? "Employee deleted successfully" : "Employee not found";
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteEmployee(@PathVariable int id) {
+        return employeeService.deleteEmployee(id)
+                ? new ResponseEntity<>("Employee Deleted Successfully", HttpStatus.OK)
+                : new ResponseEntity<>("Employee Not Found", HttpStatus.NOT_FOUND);
     }
 }
+
+
+
+
