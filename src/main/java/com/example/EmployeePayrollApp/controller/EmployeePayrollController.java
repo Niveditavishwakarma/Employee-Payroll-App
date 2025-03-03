@@ -49,6 +49,11 @@ public class EmployeePayrollController {
         employeeService.deleteEmployee(id);
         return ResponseEntity.ok("Employee Deleted Successfully");
     }
+
+    @GetMapping("/department/{department}")
+    public List<EmployeePayrollData> getSalesEmployees() {
+        return employeeService.getSalesEmployees();
+    }
 }
 
 

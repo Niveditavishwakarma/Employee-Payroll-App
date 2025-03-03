@@ -20,18 +20,19 @@ public class EmployeePayrollData {
         @Column(name="SALARY")
         private double salary;
         private String gender;
+
+        @Temporal(TemporalType.DATE)
         private Date startDate;
+
         private String note;
         private String profilePic;
+
+        @ElementCollection
+        @CollectionTable(name = "EMPLOYEE_DEPARTMENT", joinColumns = @JoinColumn(name = "EMPLOYEE_ID"))
+        @Column(name = "DEPARTMENT")
         private List<String> department;
 
         public EmployeePayrollData() {
-        }
-
-        public EmployeePayrollData(int id, String name, double salary) {
-            this.id = id;
-            this.name = name;
-            this.salary = salary;
         }
 
     }

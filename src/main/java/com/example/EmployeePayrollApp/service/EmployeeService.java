@@ -49,6 +49,11 @@ public class EmployeeService {
         employeeRepository.deleteById(id);
         return true;
     }
+
+    public List<EmployeePayrollData> getSalesEmployees() {
+        log.info("Fetching all employees from the Sales department...");
+        return employeeRepository.findByDepartment("Sales");
+    }
 }
 
 
